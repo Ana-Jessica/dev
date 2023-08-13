@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Chat em Tempo Real</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: aliceblue;
+    }
+
+    .contatos {
+      float: left;
+      min-height: 100vh;
+      width: 30%;
+      background-color: blueviolet;
+      color: aliceblue;
+    }
+
+    .chat {
+      float: right;
+      display: flex;
+      justify-content: flex-end;
+      width: 68vw;
+      height: 5vh;
+      border: double 1px #e40189;
+      border-radius: 10px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      outline: none;
+      background-color: whitesmoke;
+      text-align: center
+    }
+
+    input {
+      float: left;
+      width: 50vw;
+      height: 100%;
+      border: none;
+      outline: none;
+      margin-left: -61vw;
+      background-color: transparent;
+    }
+
+    button {
+      float: right;
+      width: 5vw;
+      height: 100%;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    button:hover {
+      float: right;
+      width: 5vw;
+      height: 100%;
+      border: none;
+      outline: none;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: #e40189;
+      cursor: pointer;
+    }
+
+    .mensagens {
+      height: 94vh;
+      width: 68vw;
+      margin-left: 32vw;
+      margin-right: 50px;
+      overflow-x: hidden; /* Oculta a barra de rolagem no eixo x */
+      white-space: wrap; /* Impede que o texto quebre em várias linhas */
+    }
+
+    li {
+      list-style-type: none;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 25px;
+    }
+
+    .programadores {
+      font-size: 20px;
+      border-bottom: aliceblue solid 1px;
+    }
+
+    .programadores:hover {
+      font-size: 20px;
+      border-bottom: aliceblue solid 1px;
+      background-color: rgb(167, 113, 218);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="contatos">
+      <h1>Todos os programadores</h1>
+      <ul>
+        <% for (const programador of programadores) { %>
+          <li class="programadores">
+            ID: <%= programador.id %>
+              Nome: <%= programador.nome %>
+          </li>
+          <% } %>
+      </ul>
+    </div>
+    <div class="mensagens">
+      <ul id="old-messages">
+        <% oldMessages.forEach((data)=> { %>
+          <li>
+            <%= data.username %>: <%= data.message %>
+          </li>
+          <% }); %>
+
+      </ul>
+      <!-- Lista para as mensagens antigas -->
+      <ul id="messages">
+        <a id="messages-anchor"></a>
+        <li><div id="chat-messages"></div></li>
+      </ul> <!-- Lista para as novas mensagens -->
+    </div>
+
+      <div class="chat">
+        <form id="chat-form">
+          <input type="text" id="message-input" placeholder="Digite sua mensagem">
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+
+    <!-- Coloque aqui os seus scripts do lado do cliente -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // Obtém o ID do usuário passado pelo backend
+      const userId = '<%= userId %>';
+
+      // Create and connect the socket
+      const socket = io.connect('http://localhost:3000'); // Adjust the URL to match your server URL
+      // Listen for 'old messages' event from the server
+      socket.on('old messages', (oldMessages) => {
+        const oldMessagesList = document.getElementById('old-messages');
+        oldMessagesList.innerHTML = ''; // Limpa a lista antes de exibir as mensagens antigas
+        oldMessages.forEach((data) => {
+          const li = document.createElement('li');
+          li.textContent = `${data.username}: ${data.message}`;
+          oldMessagesList.appendChild(li);
+          addOldMessages(oldMessages);
+        });
+      });
+
+      // Função para adicionar mensagens antigas à lista de mensagens
+      function addOldMessages(oldMessages) {
+        const oldMessagesList = document.getElementById('old-messages');
+        oldMessagesList.innerHTML = ''; // Limpa a lista antes de exibir as mensagens antigas
+        oldMessages.forEach((data) => {
+          const li = document.createElement('li');
+          li.textContent = `${data.username}: ${data.message}`; // Usa data.name em vez de data.username
+          oldMessagesList.appendChild(li);
+        });
+      }
+      function displayMessage(username, message, messageId) {
+        const chatMessages = document.getElementById('chat-messages');
+        const newMessage = document.createElement('p');
+        newMessage.innerHTML = `<strong>${username}:</strong> ${message}`;
+        newMessage.dataset.messageId = messageId; // Adiciona o atributo "data-message-id" com o ID da mensagem
+        chatMessages.appendChild(newMessage);
+      
+        // Ordena as mensagens com base no ID antes de inserir no DOM
+        const messagesList = Array.from(chatMessages.children);
+        messagesList.sort((a, b) => a.dataset.messageId - b.dataset.messageId);
+        messagesList.forEach((messageNode) => {
+          chatMessages.appendChild(messageNode);
+        });
+      }
+      
+      socket.on('chat message', (messages) => {
+        messages.forEach((msg) => {
+          displayMessage(msg.username, msg.message, msg.messageId); // Passa também o messageId
+        });
+      });
+      
+  // Função para lidar com o envio de mensagens
+  function sendMessage(event) {
+    event.preventDefault();
+    const messageInput = document.getElementById('message-input');
+    const message = messageInput.value.trim();
+    if (message !== '') {
+      // Emitir evento 'chat message' para o servidor, enviando somente o ID do programador
+      socket.emit('chat message', { programador_id: '<%= userId %>', message });
+      messageInput.value = '';
+    }
+  }
+      // Add event listener to the form
+      const chatForm = document.getElementById('chat-form');
+      chatForm.addEventListener('submit', sendMessage);
+      // Função para adicionar uma nova mensagem à lista de mensagens
+      function addNewMessage(data) {
+        const messages = document.getElementById('messages');
+        const li = document.createElement('li');
+        li.textContent = `${data.username}: ${data.message}`; // Aqui usamos o nome do programador em vez do ID
+        messages.appendChild(li);
+
+        // Rola a lista de mensagens para o topo
+        const messagesAnchor = document.getElementById('messages-anchor');
+        messagesAnchor.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+
+      // Manipula o envio do formulário de chat
+      document.getElementById('chat-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const inputMessage = document.getElementById('input-message');
+        const message = inputMessage.value.trim();
+
+        if (message !== '') {
+          // Emit the chat message event to the server
+          socket.emit('chat message', { programador_id: '<%= userId %>', message });
+          displayMessage('<%= userData.nome %>', message);
+          messageInput.value = '';
+        }
+      });
+
+      // Manipula o envio do formulário de login
+      document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const username = document.getElementById('input-username').value.trim();
+
+        if (username !== '') {
+          document.getElementById('login').style.display = 'none';
+          document.getElementById('chat').style.display = 'block';
+
+          // Solicitar mensagens antigas quando o usuário fizer login
+          socket.emit('get old messages');
+        }
+      });
+
+      // Manipula a recepção de mensagens do servidor
+      socket.on('chat message', function (data) {
+        addNewMessage(data);
+      });
+
+      // Atualiza a lista de usuários conectados
+      socket.on('user list', function (users) {
+        const usersList = document.getElementById('users');
+        usersList.innerHTML = `<strong>Usuários conectados:</strong><br>${users.join('<br>')}`;
+      });
+
+      // Solicitar mensagens antigas quando o cliente conectar ao chat
+      socket.on('connect', function () {
+        socket.emit('get old messages');
+      });
+
+      // Receber mensagens antigas do servidor e adicioná-las à lista
+      socket.on('old messages', function (oldMessages) {
+        addOldMessages(oldMessages);
+      });
+
+    </script>
+</body>
+
+</html>

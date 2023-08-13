@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Devs</title>
+    <style>
+        body {
+            margin: auto;
+            padding: 0;
+            font-weight: 100;
+        }
+        h1 {
+            background-image: linear-gradient(to right, #4a007a, #4f0e88, #541a95, #5824a4, #5b2eb2, #5f30bc, #6333c5, #6735cf, #6d2fd5, #7426db, #7c1ae1, #8400e6);
+            font-size: 50px;
+            text-align: center;
+            color: #fff;
+            height: 100px;
+            border-radius: 4px;
+            padding: 2%;
+        }
+        .caixa {
+            position: absolute;
+            left: 18%;
+            width: 1200px;
+            height: 600px;
+            border: 2px solid #4a007a;
+            padding: 5%;
+            border-radius: 8px;
+        }
+        #box {
+            display: grid;
+            grid: repeat(2, 300px) / auto-flow 250px;
+            justify-content: space-evenly; 
+            margin-right: 2%;
+            grid-column-gap: 50px;
+            grid-row-gap: 50px;
+        }
+        #box>div {
+            background-color: rgb(0, 0, 0, 0.1);
+            width: 350px;
+            height: 300px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solig rgba(255, 255, 255, 0.18);
+            color: #5F3BC6;
+        }
+        #box img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            float: center;
+            padding: 2%;
+        }
+        .avaliacao {
+            display: flex;
+        }
+        .star-icon {
+            list-style-type: none;
+            /* border: 1px solid #fff; */
+            cursor: pointer;
+            color: #ffe500;
+            height: 50%;
+            width: 30%;
+        }
+        .star-icon::before {
+            content: "\2605";
+        }
+        .star-icon.ativo~.star-icon::before {
+            content: "\2606";
+        }
+        .avaliacao:hover .star-icon::before {
+            content: "\2605";
+        }
+        .star-icon:hover~.star-icon::before {
+            content: "\2606";
+        }
+    </style>
+</head>
+<body>
+    <h1>Encontre aqui o profissional que você procura</h1><br>
+    <div class="caixa">
+        <div id="box">
+            <div><img src="imgs/bat.jpg"><br> Milena Dourado<br>
+                1 <br>
+                <ul class="avaliacao">
+                    <li class="star-icon ativo" data-avaliacao="1"></li>
+                    <li class="star-icon" data-avaliacao="2"></li>
+                    <li class="star-icon" data-avaliacao="3"></li>
+                    <li class="star-icon" data-avaliacao="4"></li>
+                    <li class="star-icon" data-avaliacao="5"></li>
+                </ul>
+                <script>
+                    var stars = document.querySelectorAll('.star-icon');
+                    document.addEventListener('click', function (e) {
+                        var classStar = e.target.classList;
+                        if(!classStar.contains('ativo')){
+                            stars.forEach(function(star){
+                                star.classList.remove('ativo');        
+                            });
+                            classStar.add('ativo');
+                            console.log(e.target.getAttribute('data-avaliacao'));                          
+                        }
+                    });
+                </script>
+            </div>
+            <div><img src="imgs/mulher m.jpg"><br> Ana Jessica<br>
+                2</div>
+            <div><img src="imgs/super.jpg"><br> Rebeca de Sousa <br>
+                3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/ICONS/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/ICONS/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/ICONS/favicon-16x16.png">
+    <link rel="manifest" href="../static/ICONS/site.webmanifest">
+    <link rel="mask-icon" href="../static/ICONS/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Dev Opportunity</title>
+    <style>
+        body{
+            padding: 3%;
+            /* background-color: #5F3BC6; */
+            background-image: linear-gradient(to right top, #4a007a, #4f0e88, #541a95, #5824a4, #5b2eb2, #5f30bc, #6333c5, #6735cf, #6d2fd5, #7426db, #7c1ae1, #8400e6);
+        }
+        .container{
+            background-color: white;
+            background-size: cover;
+            margin: 0 auto;
+            width: 1500px;
+            height: 900px;
+            border-radius: 20px;
+            color: aliceblue;
+            overflow: hidden;
+            
+        }
+        /* .cabecalho{
+           float: right;
+        } */
+        h1{
+            color:#5F3BC6;
+            font-family: 'Crimson Text', serif;
+            font-family: 'Lobster', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
+            font-size: 25px;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.05rem;
+        }
+        h2{
+            color:#5F3BC6;
+            font-family: 'Crimson Text', serif;
+            font-family: 'Lobster', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
+            font-size: 40px;
+            text-align: center;
+            letter-spacing: 0.05rem;
+        }
+        h3{
+            color: white;
+            font-size: 18px;
+            font-family: 'Crimson Text', serif;
+            font-family: 'Lobster', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
+            letter-spacing: 0.05rem;
+        }
+        h4{
+            font-size: 18px;
+            font-family: arial;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.05rem;
+        }
+        h5{
+            color:#5F3BC6;
+            font-family: 'Crimson Text', serif;
+            font-family: 'Lobster', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
+            font-size: 22px;
+            margin: 8px;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.05rem;
+        }
+        .log{
+            padding-left: 10px;
+        }
+        .botao{
+            background: white;
+            width: 160px;
+            height: 35px;
+            border: 1px solid white;
+            color: #5F3BC6;
+            margin-top: 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            transition: 0.5s;
+        }
+        .botao:hover{
+            background: transparent;
+            border: 1px solid white ;
+            margin-top: 20px;
+            color: white;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+        .botao1{
+            background: white;
+            border: 1px solid #5F3BC6;
+            width: 120px;
+            height: 25px;
+            border: none;
+            color: #5F3BC6;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            font-size: 16px;
+        }
+        .botao1:hover{
+            background: #5F3BC6;
+            border: 1px solid #5F3BC6;
+            margin-top: 20px;
+            color: white;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+        .botao2{
+            background: white;
+            border: 1px solid #5F3BC6;
+            width: 200px;
+            height: 25px;
+            border: none;
+            color: #5F3BC6;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            font-size: 16px;
+        }
+        .botao2:hover{
+            background: #5F3BC6;
+            border: 1px solid #5F3BC6;
+            margin-top: 20px;
+            color: white;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+        .cadastro{
+            padding: 60px; 
+            float: left; 
+        }
+        .redes{
+            padding-top: 50px;
+            text-align: center;
+        }
+        .imagem{
+            height: 800px;
+            padding: 40px;
+            float: left;
+        }
+        .icon{
+            padding: 20px;
+            float: right;
+        }
+        .icon2{
+            text-align: center;
+        }
+        .caixa{
+            background-color: #4A007A;
+            width: 230px;
+            height: 350px;
+            border: 1px solid #4A007A;
+            border-radius: 15px;
+            color: white;
+            float: left;
+            margin: 10px 10px;
+            text-align: center;
+            font-family: arial;   
+        }
+        .caixa:hover{
+            background: #e40189;
+            border: 1px solid #e40189;
+            margin-top: 20px;
+            border-radius: 15px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .caixa1{
+            background-color: #5F3BC6;
+            width: 230px;
+            height: 350px;
+            border: 1px solid #5F3BC6;
+            border-radius: 15px;
+            color: white;
+            float: left;
+            margin: 10px 10px;
+            text-align: center;
+            font-family: arial;
+        }
+        .caixa1:hover{
+            background: #e40189;
+            border: 1px solid #e40189;
+            margin-top: 20px;
+            border-radius: 15px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .caixa2{
+            background-color: #8400E6;
+            width: 230px;
+            height: 350px;
+            border: 1px solid #8400E6;
+            border-radius: 15px;
+            color: white;
+            float: left;
+            margin: 10px 10px;
+            text-align: center;
+            font-family: arial;
+        }
+        .caixa2:hover{
+            background: #e40189;
+            border: 1px solid #e40189;
+            margin-top: 20px;
+            border-radius: 15px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .nav{
+            width: 60%;
+            margin: auto;
+            text-align: center;
+            display: flex; 
+            justify-content: space-around;
+        }
+        .nav-link{
+            transition: 0.1s;
+        }
+        .btn-outline-success{
+            background-color: white;
+            border-radius: 5px;
+            width: 70px;
+            height: 38px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+        .btn-outline-success:hover{
+            background: #e40189;
+            border: 1px solid #e40189;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .form-control{
+            border-radius: 5px;
+            width: 600px;
+            height: 39px;
+            border: none;
+            outline: none;
+            margin: 0;
+            font-size: 16px;
+        }
+        .form-select{
+            border-radius: 5px;
+            width: 180px;
+            height: 39px;
+            text-align: center;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        .box{
+            width: 700px;
+            height: 200px;
+            border: 1px solid #5F3BC6;
+            border-radius: 15px;
+            color: white;
+            font-family: arial;
+            margin-left: 10px;
+            margin: auto;
+        }
+        .logo {
+            float: right;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="logo">
+            <img src="static/imagens/LOGO15.PNG" width="300px">
+        </div>
+        <div class="cabecalho">
+        &nbsp &nbsp  <a href="views/sobre.html"><button class="botao1"> Sobre </button></a> &nbsp
+        <a href="views/contato.html"><button class="botao1"> Contato </button></a> &nbsp
+        <a href="views/login.html"><button class="botao1"> Acessar </button></a> 
+    </div>
+    
+    <div class="imagem">
+        <img src="static/imagens/fundo.png">
+    </div>
+
+    <div class="cadastro">
+        <h2>Bem-vindo à Dev Opportunity</h2>
+        <br>
+        <h1> O que você está procurando? Cadastre-se já.</h1>
+    </div>
+    
+    <div class="caixa">
+        <div class="icon2"><br>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-buildings" viewBox="0 0 16 16">
+            <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
+            <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
+          </svg></div>
+          <h3> Empresas </h3> <br>
+           Devs disponíveis<hr>Contato<hr>Seu espaço<hr>
+           <a href="views/cadastrar.html"><button class="botao"> Cadastre-se </button></a>
+    </div>
+
+    <div class="caixa1">
+        <div class="icon2"><br>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+              </svg></div>
+              <h3> Programador </h3> <br>
+            Empresas disponíveis<hr>Contato<hr>Portfólio<hr>
+            <a href="views/cadastrar.html"><button class="botao"> Cadastre-se </button></a>
+    </div>
+
+    <div class="caixa2">
+        <div class="icon2"><br>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></div>
+          <h3> Vagas </h3> <br>
+        Web-Designer<hr>Cyber security<hr>Analista de sistemas<hr>
+
+        <a class="nav-link js-scroll-trigger" href="views/sobrevagas.php">
+            <button class="botao"> Ver mais </button>
+        </a>
+    </div>
+     </body>
+     </html>
